@@ -8,7 +8,7 @@ const config = {
 const styles = {
   global: {
     body: {
-      bg: '#0b0b0b', // Deep dark background as fallback for Vanta
+      bg: '#0b0b0b',
       color: 'whiteAlpha.900',
       overflowX: 'hidden',
     },
@@ -22,9 +22,9 @@ const styles = {
 
 const colors = {
   brand: {
-    100: '#00F0FF', // Cyber Cyan
-    200: '#7000FF', // Neon Purple
-    300: '#00FF94', // Matrix Green
+    100: '#00F0FF',
+    200: '#7000FF',
+    300: '#00FF94',
     900: '#1A202C',
   },
 }

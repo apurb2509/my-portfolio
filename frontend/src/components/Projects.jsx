@@ -1,9 +1,9 @@
+// USE THIS ONLY IF THE INSTALL FAILS
 import React, { useEffect, useRef } from 'react'
-import { Box, Heading, Text, SimpleGrid, Badge, Button, Flex, Image, Link } from '@chakra-ui/react'
+import { Box, Heading, Text, SimpleGrid, Badge, Button, Flex, Link } from '@chakra-ui/react'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import VanillaTilt from 'vanilla-tilt'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -40,26 +40,15 @@ const projectList = [
     title: "Wai-Wai",
     desc: "AI-powered job description generator and recruitment assistant tool.",
     tech: ["Next.js", "GPT-4", "Tailwind CSS"],
-    github: "https://github.com/apurb2509", // Placeholder
+    github: "https://github.com/apurb2509", 
     color: "purple.400"
   }
 ]
 
 const Projects = () => {
   const sectionRef = useRef(null)
-  const cardsRef = useRef([])
 
   useEffect(() => {
-    // Initialize VanillaTilt for 3D hover effect
-    VanillaTilt.init(cardsRef.current, {
-      max: 15,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.2,
-      scale: 1.05
-    })
-
-    // GSAP Scroll Animation
     const ctx = gsap.context(() => {
       gsap.fromTo(".project-card",
         { opacity: 0, y: 100 },
@@ -93,11 +82,11 @@ const Projects = () => {
         Featured Projects
       </Heading>
 
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
-        {projectList.map((project, idx) => (
+      // Change this line in Projects.jsx
+<SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+        {projectList.map((project) => (
           <Box
             key={project.title}
-            ref={el => cardsRef.current[idx] = el}
             className="project-card"
             bg="rgba(20, 20, 30, 0.6)"
             backdropFilter="blur(10px)"
@@ -106,6 +95,12 @@ const Projects = () => {
             border="1px solid rgba(255,255,255,0.1)"
             position="relative"
             overflow="hidden"
+            transition="all 0.3s ease"
+            _hover={{
+                transform: "translateY(-10px)",
+                borderColor: project.color,
+                boxShadow: `0 0 20px ${project.color}40`
+            }}
             _before={{
               content: '""',
               position: 'absolute',

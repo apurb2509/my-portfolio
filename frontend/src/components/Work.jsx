@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Box, Heading, Text, VStack, HStack, Circle, Flex, Badge, List, ListItem, ListIcon } from '@chakra-ui/react'
+import { Box, Heading, Text, VStack, HStack, Flex, Badge, List, ListItem, Icon } from '@chakra-ui/react'
 import { MdCheckCircle } from 'react-icons/md'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -89,6 +89,7 @@ const Work = () => {
             borderRadius="xl" 
             p={6} 
             position="relative"
+            direction="column"
             _hover={{ 
               borderColor: 'brand.200', 
               boxShadow: '0 0 20px rgba(112, 0, 255, 0.2)',
@@ -122,7 +123,8 @@ const Work = () => {
               <List spacing={2} mb={4}>
                 {exp.description.map((item, idx) => (
                   <ListItem key={idx} color="gray.400" fontSize="sm" display="flex" alignItems="start">
-                    <ListIcon as={MdCheckCircle} color="brand.300" mt={1} />
+                    {/* Replaced ListIcon with Icon to fix import error */}
+                    <Icon as={MdCheckCircle} color="brand.300" mt={1} mr={2} boxSize={5} />
                     {item}
                   </ListItem>
                 ))}

@@ -22,16 +22,18 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Placeholder for Backend Connection
     console.log("Form Submitted:", formData)
+    
     toast({
       title: "Message Sent!",
       description: "Thanks for reaching out. I'll get back to you soon.",
       status: "success",
       duration: 3000,
       isClosable: true,
-      position: "bottom-right"
+      position: "bottom-right",
+      variant: "solid"
     })
+    
     setFormData({ name: '', email: '', message: '' })
   }
 
@@ -57,10 +59,10 @@ const Contact = () => {
 
   const socialLinks = [
     { icon: FaGithub, link: "https://github.com/apurb2509", color: "gray.200" },
-    { icon: FaLinkedin, link: "https://linkedin.com/in/your-id", color: "#0077b5" }, // Update Link
-    { icon: FaTwitter, link: "https://twitter.com/your-id", color: "#1DA1F2" }, // Update Link
-    { icon: FaInstagram, link: "https://instagram.com/your-id", color: "#E1306C" }, // Update Link
-    { icon: FaEnvelope, link: "mailto:your-email@gmail.com", color: "#EA4335" } // Update Link
+    { icon: FaLinkedin, link: "https://linkedin.com/in", color: "#0077b5" },
+    { icon: FaTwitter, link: "https://twitter.com", color: "#1DA1F2" },
+    { icon: FaInstagram, link: "https://instagram.com", color: "#E1306C" },
+    { icon: FaEnvelope, link: "mailto:your-email@gmail.com", color: "#EA4335" }
   ]
 
   return (
@@ -68,21 +70,13 @@ const Contact = () => {
       <Container maxW="container.lg">
         <Flex direction={{ base: "column", md: "row" }} gap={10} justify="center">
           
-          {/* Left Side: Info */}
           <Box flex={1} className="contact-content">
-            <Heading 
-              as="h2" 
-              size="2xl" 
-              mb={4} 
-              color="brand.100"
-              textShadow="0 0 10px rgba(0,240,255,0.5)"
-            >
+            <Heading as="h2" size="2xl" mb={4} color="brand.100" textShadow="0 0 10px rgba(0,240,255,0.5)">
               Let's Connect
             </Heading>
             <Text fontSize="lg" color="gray.400" mb={8}>
               I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
             </Text>
-
             <HStack spacing={4} mt={4}>
               {socialLinks.map((social, idx) => (
                 <IconButton
@@ -94,12 +88,7 @@ const Contact = () => {
                   icon={<social.icon size="24px" />}
                   bg="rgba(255,255,255,0.05)"
                   color={social.color}
-                  _hover={{ 
-                    bg: social.color, 
-                    color: "white", 
-                    transform: "translateY(-3px)",
-                    boxShadow: `0 0 15px ${social.color}`
-                  }}
+                  _hover={{ bg: social.color, color: "white", transform: "translateY(-3px)", boxShadow: `0 0 15px ${social.color}` }}
                   borderRadius="full"
                   size="lg"
                   transition="all 0.3s"
@@ -108,60 +97,12 @@ const Contact = () => {
             </HStack>
           </Box>
 
-          {/* Right Side: Form */}
-          <Box 
-            flex={1} 
-            as="form" 
-            onSubmit={handleSubmit}
-            className="contact-content"
-            bg="rgba(11, 11, 11, 0.6)"
-            backdropFilter="blur(10px)"
-            p={8}
-            borderRadius="xl"
-            border="1px solid rgba(255,255,255,0.1)"
-          >
+          <Box flex={1} as="form" onSubmit={handleSubmit} className="contact-content" bg="rgba(11, 11, 11, 0.6)" backdropFilter="blur(10px)" p={8} borderRadius="xl" border="1px solid rgba(255,255,255,0.1)">
             <VStack spacing={4}>
-              <Input 
-                placeholder="Your Name" 
-                name="name" 
-                value={formData.name}
-                onChange={handleChange}
-                bg="whiteAlpha.100" 
-                border="none" 
-                _focus={{ boxShadow: "0 0 0 2px #00F0FF", bg: "whiteAlpha.200" }} 
-              />
-              <Input 
-                placeholder="Your Email" 
-                name="email"
-                type="email" 
-                value={formData.email}
-                onChange={handleChange}
-                bg="whiteAlpha.100" 
-                border="none" 
-                _focus={{ boxShadow: "0 0 0 2px #00F0FF", bg: "whiteAlpha.200" }} 
-              />
-              <Textarea 
-                placeholder="Write your message..." 
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                bg="whiteAlpha.100" 
-                border="none" 
-                rows={5}
-                _focus={{ boxShadow: "0 0 0 2px #00F0FF", bg: "whiteAlpha.200" }} 
-              />
-              <Button 
-                type="submit"
-                width="full" 
-                colorScheme="cyan" 
-                variant="solid"
-                bgGradient="linear(to-r, brand.100, brand.200)"
-                _hover={{ 
-                  bgGradient: "linear(to-r, brand.200, brand.100)",
-                  boxShadow: "0 0 20px rgba(0, 240, 255, 0.4)" 
-                }}
-                color="black"
-              >
+              <Input placeholder="Your Name" name="name" value={formData.name} onChange={handleChange} bg="whiteAlpha.100" border="none" _focus={{ boxShadow: "0 0 0 2px #00F0FF", bg: "whiteAlpha.200" }} />
+              <Input placeholder="Your Email" name="email" type="email" value={formData.email} onChange={handleChange} bg="whiteAlpha.100" border="none" _focus={{ boxShadow: "0 0 0 2px #00F0FF", bg: "whiteAlpha.200" }} />
+              <Textarea placeholder="Write your message..." name="message" value={formData.message} onChange={handleChange} bg="whiteAlpha.100" border="none" rows={5} _focus={{ boxShadow: "0 0 0 2px #00F0FF", bg: "whiteAlpha.200" }} />
+              <Button type="submit" width="full" colorScheme="cyan" variant="solid" bgGradient="linear(to-r, brand.100, brand.200)" _hover={{ bgGradient: "linear(to-r, brand.200, brand.100)", boxShadow: "0 0 20px rgba(0, 240, 255, 0.4)" }} color="black">
                 Send Message
               </Button>
             </VStack>

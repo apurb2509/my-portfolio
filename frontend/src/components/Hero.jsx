@@ -1,32 +1,19 @@
 import React, { useEffect, useRef } from 'react'
-import { Box, Heading, Text, Badge, Wrap, WrapItem } from '@chakra-ui/react'
+import { Box, Heading, Text, Badge, Stack, Flex, Button } from '@chakra-ui/react'
 import { gsap } from 'gsap'
 
 const Hero = () => {
   const containerRef = useRef(null)
-
+  
   const techStack = [
-    "React", "Node.js", "Next.js", "Java", "Python", "C++", "AI/ML", "GSAP", "Three.js"
+    "React", "Node.js", "Next.js", "Java", "Python", "AI/ML"
   ]
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate the container fade in
-      gsap.fromTo(containerRef.current, 
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
-      )
-
-      // Stagger animate text elements
-      gsap.fromTo(".hero-text",
+      gsap.fromTo(".hero-content", 
         { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 0.8, stagger: 0.2, ease: "back.out(1.7)", delay: 0.5 }
-      )
-      
-      // Animate badges
-      gsap.fromTo(".tech-badge",
-        { scale: 0, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.5, stagger: 0.1, delay: 1.2, ease: "elastic.out(1, 0.5)" }
+        { opacity: 1, x: 0, duration: 1, stagger: 0.2, ease: "power3.out" }
       )
     }, containerRef)
 
@@ -34,70 +21,103 @@ const Hero = () => {
   }, [])
 
   return (
-    <Box 
+    <Flex 
       ref={containerRef}
-      w="100%" 
-      minH="80vh" 
-      display="flex" 
-      alignItems="center" 
-      justifyContent="center"
+      minH="90vh" // Takes up almost full screen height
+      align="center"
+      justify="space-between"
+      direction={{ base: 'column', md: 'row' }}
+      px={{ base: 4, md: 0 }}
     >
-      <Box 
-        p={8} 
-        borderRadius="xl" 
-        bg="rgba(11, 11, 11, 0.6)" 
-        backdropFilter="blur(10px)" 
-        border="1px solid rgba(0, 240, 255, 0.2)"
-        boxShadow="0 0 20px rgba(0, 240, 255, 0.1)"
-        maxW="800px"
-      >
+      {/* Left Content */}
+      <Box maxW="600px" className="hero-content">
+        <Text color="brand.100" fontSize="xl" fontWeight="bold" mb={2}>
+          Hi, I am
+        </Text>
         <Heading 
           as="h1" 
-          size="2xl" 
-          className="hero-text" 
-          bgGradient="linear(to-r, brand.100, brand.200)" 
-          bgClip="text"
-          mb={2}
+          size="4xl" 
+          fontWeight="extrabold" 
+          lineHeight="1.1"
+          mb={4}
+          color="white"
         >
           Apurb Susobhit Baba
         </Heading>
-
-        <Heading as="h2" size="md" color="gray.300" className="hero-text" mb={4}>
-          Software Developer & AI Enthusiast
+        <Heading 
+          as="h2" 
+          size="lg" 
+          color="gray.400" 
+          fontWeight="normal"
+          mb={6}
+        >
+          Building intelligent <Text as="span" color="brand.200">Software</Text> & <Text as="span" color="brand.300">AI Solutions</Text>.
         </Heading>
 
-        <Text fontSize="lg" color="gray.400" className="hero-text" mb={2}>
-          B.Tech in Electronics and Instrumentation Engineering
-        </Text>
-        
-        <Text fontSize="md" color="brand.100" className="hero-text" mb={6} fontWeight="bold">
-          NIT Rourkela
+        <Text color="gray.400" fontSize="lg" mb={8} maxW="500px">
+          Electronics & Instrumentation Engineer at NIT Rourkela. I bridge the gap between complex backend systems and beautiful user interfaces.
         </Text>
 
-        <Text className="hero-text" mb={3} color="gray.500" fontSize="sm">
-          TECH STACK
-        </Text>
-
-        <Wrap spacing={3} className="hero-text">
-          {techStack.map((tech) => (
-            <WrapItem key={tech}>
-              <Badge 
-                className="tech-badge"
+        <Stack direction="row" spacing={4} mb={8}>
+            <Button 
+                as="a" 
+                href="#projects" 
+                size="lg" 
                 colorScheme="cyan" 
-                variant="outline" 
-                fontSize="0.9em" 
-                p={2} 
-                borderRadius="md"
-                _hover={{ bg: 'brand.100', color: 'black', transform: 'scale(1.1)', transition: 'all 0.2s' }}
-                cursor="default"
-              >
-                {tech}
-              </Badge>
-            </WrapItem>
-          ))}
-        </Wrap>
+                variant="solid"
+                bgGradient="linear(to-r, brand.100, brand.200)"
+                _hover={{ bgGradient: "linear(to-r, brand.200, brand.100)" }}
+            >
+                View Projects
+            </Button>
+            <Button 
+                as="a" 
+                href="#contact" 
+                size="lg" 
+                colorScheme="gray" 
+                variant="outline"
+                _hover={{ bg: "whiteAlpha.200" }}
+            >
+                Contact Me
+            </Button>
+        </Stack>
+
+        <Stack direction="row" wrap="wrap" spacing={2}>
+            {techStack.map(tech => (
+                <Badge 
+                    key={tech} 
+                    px={3} py={1} 
+                    borderRadius="full" 
+                    colorScheme="purple"
+                    variant="subtle"
+                    textTransform="none"
+                    fontSize="0.9em"
+                >
+                    {tech}
+                </Badge>
+            ))}
+        </Stack>
       </Box>
-    </Box>
+
+      {/* Right Content - Visual decoration to fill empty space */}
+      <Box 
+        className="hero-content"
+        w={{ base: "100%", md: "400px" }}
+        h="400px"
+        bg="rgba(255, 255, 255, 0.02)"
+        borderRadius="2xl"
+        border="1px solid rgba(255, 255, 255, 0.1)"
+        display={{ base: "none", md: "flex" }}
+        alignItems="center"
+        justifyContent="center"
+        backdropFilter="blur(5px)"
+      >
+        <Text color="gray.600" textAlign="center">
+           [ 3D Model / Avatar Placeholder ] <br/>
+           (Replacing empty space)
+        </Text>
+      </Box>
+    </Flex>
   )
 }
 
