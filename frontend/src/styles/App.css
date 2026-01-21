@@ -1,0 +1,35 @@
+/* frontend/src/styles/App.css */
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0b0b0b; 
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #00F0FF; 
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7000FF; 
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure Vanta Canvas behaves as a fixed background if needed, 
+     though the React wrapper handles most of this. */
+  canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Behind content */
+  }
